@@ -13,7 +13,8 @@ def index():
   <title>Flask Basic</title>
 </head>
 <body>
-  <h1>Hui Senมาแล้วจ้า</h1>
+  <h1>คุณผู้หญิง</h1>
+  <h1>โอนเงินมาได้แล้ว</h1>
   <hr>
 </body>
 </html>"""

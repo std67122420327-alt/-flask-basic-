@@ -1,6 +1,6 @@
 from flask import Flask
 
-app = Flask(__name__)
+app = Flask(__name__) 
 
 # หน้าแรก: ดึงโค้ดแอนิเมชันแก๊งเด็กดื้อสีเขียวมาแสดงผล (แบบวนลูปเรื่อยๆ)
 @app.route('/')

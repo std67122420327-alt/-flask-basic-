@@ -2,7 +2,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-# หน้าแรก: ดึงโค้ดแอนิเมชันแก๊งเด็กดื้อสีเขียวมาแสดงผล
+# หน้าแรก: ดึงโค้ดแอนิเมชันแก๊งเด็กดื้อสีเขียวมาแสดงผล (แบบวนลูปเรื่อยๆ)
 @app.route('/')
 def index():
   return """
@@ -11,7 +11,7 @@ def index():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แก๊งเด็กดื้อ - Green Edition</title>
+    <title>แก๊งเด็กดื้อ - Green Edition (Loop)</title>
     <style>
         body {
             background-color: #1e1e1e;
@@ -72,21 +72,29 @@ def index():
         const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
         async function runCodeAnimation() {
-            for (let i = 0; i < codeLines.length; i++) {
-                const lineData = codeLines[i];
+            // ใช้ while (true) เพื่อให้ลูปทำงานไปเรื่อยๆ ไม่มีวันหยุด
+            while (true) {
+                container.innerHTML = ''; // เคลียร์หน้าจอให้ว่างก่อนเริ่มพิมพ์ใหม่ในแต่ละรอบ
                 
-                const lineElement = document.createElement('div');
-                lineElement.className = 'line cursor';
-                lineElement.style.color = lineData.color;
-                container.appendChild(lineElement);
+                for (let i = 0; i < codeLines.length; i++) {
+                    const lineData = codeLines[i];
+                    
+                    const lineElement = document.createElement('div');
+                    lineElement.className = 'line cursor';
+                    lineElement.style.color = lineData.color;
+                    container.appendChild(lineElement);
 
-                for (let char of lineData.text) {
-                    lineElement.textContent += char;
-                    await sleep(typingSpeed);
+                    for (let char of lineData.text) {
+                        lineElement.textContent += char;
+                        await sleep(typingSpeed);
+                    }
+
+                    lineElement.classList.remove('cursor');
+                    await sleep(lineDelay);
                 }
-
-                lineElement.classList.remove('cursor');
-                await sleep(lineDelay);
+                
+                // พอพิมพ์ครบ 3 บรรทัดแล้ว ให้หยุดรอ 2 วินาที ก่อนจะเคลียร์หน้าจอแล้วเริ่มรอบใหม่
+                await sleep(2000); 
             }
         }
 
@@ -96,7 +104,6 @@ def index():
 </html>
 """
 
-# แก้ไขเพิ่ม <int:age> เพื่อให้ระบบรู้ว่าเป็นตัวเลขและคำนวณ {age+1} ได้
 @app.route('/user/<name>/<int:age>')
 def my_name(name, age):
   return f'<h1> My name is {name}.I\'m {age+1} years old.</h1>'
@@ -129,6 +136,5 @@ def power(base,exponent):
 def div(a, b):
   return f'<h1>{a} // {b} = {a//b}</h1>'
 
-# เปิดคอมเมนต์เพื่อให้สั่งรันโปรแกรมได้
 if __name__ == '__main__':
   app.run(debug=True)

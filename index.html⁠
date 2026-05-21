@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RESCENE - Deja Vu (Perfect Sync Lyrics)</title>
+    <title>RESCENE - Deja Vu (Full Sync Lyrics)</title>
     <style>
         body {
             background-color: #161616;
@@ -51,16 +51,60 @@
             overflow-y: auto;
             box-shadow: 0 15px 35px rgba(0,0,0,0.7);
             scroll-behavior: smooth;
+            position: relative;
+        }
+
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            background-color: #0d0d0d;
+            z-index: 10;
         }
 
         .song-title {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: bold;
             color: #ffffff;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            text-align: center;
+            margin: 0;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .control-btn {
+            background-color: #222;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 6px 14px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .control-btn:hover {
+            background-color: #E07A9E;
+            border-color: #E07A9E;
+        }
+
+        .time-display {
+            font-size: 16px;
+            color: #888;
+            font-weight: bold;
+            background: #1a1a1a;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid #2d2d2d;
         }
 
         .line {
@@ -69,11 +113,10 @@
             font-size: 19px;
             font-weight: bold;
             line-height: 1.6;
-            opacity: 0.4;
+            opacity: 0.2;
             transition: opacity 0.3s;
         }
 
-        /* ไฮไลท์ท่อนที่กำลังร้องให้เด่นชัดขึ้น */
         .line.active {
             opacity: 1;
             filter: drop-shadow(0 0 4px var(--line-color));
@@ -100,30 +143,41 @@
     </audio>
 
     <div class="terminal-box" id="terminal">
-        <div class="song-title">🎵 Deja Vu - RESCENE</div>
+        <div class="terminal-header">
+            <h1 class="song-title">🎵 Deja Vu - RESCENE</h1>
+            <div class="audio-controls">
+                <div class="time-display" id="time-viewer">00:00</div>
+                <button class="control-btn" id="play-pause-btn" onclick="togglePlayPause()">⏸ Pause</button>
+            </div>
+        </div>
         <div id="code-container"></div>
     </div>
 
     <script>
-        // โค้ดสีประจำตัวเมมเบอร์: Woni(#E07A9E) | Liv(#B47EE3) | Minami(#47CFC3) | May(#E5C564) | Zena(#EAA079)
-        // กำหนดช่วงเวลา (time) เป็นวินาทีให้ตรงตามท่อนร้องจริงในไฟล์เพลง
+        // รวมเนื้อเพลงทั้งหมดตัวเต็มจนจบเพลงตามลิงก์ที่ให้มา
         const codeLines = [
+            // ==========================================
+            // KOREAN VERSION (ท่อนภาษาเกาหลี)
+            // ==========================================
             { time: 9.0, text: "햇살 젖은 바람 잠이 든 I", color: "#E07A9E" },
             { time: 13.0, text: "물든 창문 틈새 스며든 light", color: "#B47EE3" },
             { time: 16.0, text: "나의 코끝을 스친 scent", color: "#47CFC3" },
             { time: 19.5, text: "(그 향기에)", color: "#EAA079" },
             { time: 22.0, text: "피어난 작은 보조개", color: "#E07A9E" },
             { time: 25.5, text: "(Oh It’s so bright)", color: "#B47EE3" },
+            { time: 28.0, text: "", color: "#ffffff" },
             
             { time: 28.5, text: "책상 위에 그린 낙서", color: "#47CFC3" },
             { time: 32.0, text: "너와 나눈 그 비밀도", color: "#E5C564" },
             { time: 35.5, text: "바람결에 실려 다시", color: "#EAA079" },
-            { time: 39.0, text: "되돌า간 기분 after all", color: "#E07A9E" },
+            { time: 39.0, text: "되돌아간 기분 after all", color: "#E07A9E" },
+            { time: 43.0, text: "", color: "#ffffff" },
             
             { time: 43.5, text: "처음 스친 그때 이 향길 기억해 줘", color: "#B47EE3" },
             { time: 50.5, text: "닿은 그 순간 펼쳐질 deja vu", color: "#47CFC3" },
             { time: 57.5, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E5C564" },
             { time: 61.5, text: "익숙한 deja vu Oh oh oh ha", color: "#EAA079" },
+            { time: 65.0, text: "", color: "#ffffff" },
             
             { time: 65.5, text: "I I I I I", color: "#EAA079" },
             { time: 68.0, text: "Yeah it’s like a deja vu", color: "#E07A9E" },
@@ -131,34 +185,82 @@
             { time: 74.0, text: "다시 닿을 수 없다 해도", color: "#47CFC3" },
             { time: 79.0, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E5C564" },
             { time: 83.0, text: "익숙한 deja vu Oh oh oh ha", color: "#E07A9E" },
+            { time: 86.5, text: "", color: "#ffffff" },
             
             { time: 87.0, text: "빽빽한 책장 사이 손때 묻은 한 칸", color: "#47CFC3" },
             { time: 90.5, text: "바랜 책 모퉁일 넘기면 튀어나온", color: "#E5C564" },
             { time: 94.0, text: "자그만 이야길 들어 (귀 기울여 봐)", color: "#B47EE3" },
             { time: 98.0, text: "조금은 서툴렀던 날", color: "#E07A9E" },
+            { time: 101.0, text: "", color: "#ffffff" },
             
             { time: 101.5, text: "빛이 바랜 쪽지 속에 나를 어루만진 네 voice", color: "#EAA079" },
-            { time: 105.0, text: "바람결에 실려 다시 되돌า간 기분 after all", color: "#E07A9E" },
+            { time: 105.0, text: "바람결에 실려 다시 되돌아간 기분 after all", color: "#E07A9E" },
+            { time: 109.0, text: "", color: "#ffffff" },
             
             { time: 109.5, text: "처음 스친 그때 이 향길 기억해 줘", color: "#E5C564" },
             { time: 116.5, text: "닿은 그 순간 펼쳐질 deja vu", color: "#EAA079" },
             { time: 123.5, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E07A9E" },
             { time: 127.5, text: "익숙한 deja vu Oh oh oh ha", color: "#B47EE3" },
+            { time: 131.0, text: "", color: "#ffffff" },
             
             { time: 131.5, text: "I I I I I", color: "#B47EE3" },
             { time: 134.0, text: "Yeah it’s like a deja vu", color: "#47CFC3" },
             { time: 138.0, text: "You and I", color: "#E5C564" },
             { time: 140.0, text: "다시 닿을 수 없다 해도", color: "#EAA079" },
-            { text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E07A9E" },
-            { text: "익숙한 deja vu Oh oh oh ha", color: "#B47EE3" }
+            { time: 145.0, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E07A9E" },
+            { time: 149.0, text: "익숙한 deja vu Oh oh oh ha", color: "#B47EE3" },
+            { time: 152.5, text: "", color: "#ffffff" },
+            
+            { time: 153.0, text: "(I’ve been thinking about you)", color: "#EAA079" },
+            { time: 156.0, text: "그리워질 너와 나", color: "#E07A9E" },
+            { time: 160.0, text: "(I’ve been dreaming about you)", color: "#B47EE3" },
+            { time: 163.0, text: "이 순간을 잊지 마", color: "#47CFC3" },
+            { time: 166.5, text: "", color: "#ffffff" },
+            
+            { time: 167.0, text: "언젠가 세상 끝에서 마주할 날 오랜 deja vu", color: "#E5C564" },
+            { time: 174.0, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#EAA079" },
+            { time: 178.0, text: "익숙한 deja vu Oh oh oh ha", color: "#E07A9E" },
+            { time: 181.5, text: "", color: "#ffffff" },
+            
+            { time: 182.0, text: "I I I I I", color: "#B47EE3" },
+            { time: 184.5, text: "Yeah it’s like a deja vu", color: "#47CFC3" },
+            { time: 188.5, text: "You and I", color: "#E5C564" },
+            { time: 190.5, text: "다시 닿을 수 없다 해도", color: "#EAA079" },
+            { time: 195.5, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E07A9E" },
+            { time: 199.5, text: "익숙한 deja vu Oh oh oh ha", color: "#B47EE3" },
+            { time: 204.0, text: "", color: "#ffffff" },
+
+            // ==========================================
+            // ROMANIZATION VERSION (ท่อนพาร์ทเนื้อร้องภาษาอังกฤษ)
+            // ==========================================
+            { time: 205.0, text: "----------------------------------------", color: "#555555" },
+            { time: 205.5, text: "          ROMANIZATION VERSION          ", color: "#ffffff" },
+            { time: 206.0, text: "----------------------------------------", color: "#555555" },
+            { time: 206.5, text: "", color: "#ffffff" },
+            
+            { time: 207.0, text: "haessal jeojeun baram jami deun I", color: "#E07A9E" },
+            { time: 211.0, text: "muldeun changmun teumsae seumyeodeun light", color: "#B47EE3" },
+            { time: 214.0, text: "naui kokkeuteul seuchin scent (geu hyanggie)", color: "#47CFC3" },
+            { time: 220.0, text: "pieonan jageun bojogae (Oh It’s so bright)", color: "#E07A9E" },
+            { time: 226.0, text: "", color: "#ffffff" },
+            
+            { time: 226.5, text: "chaeksang wie geurin nakseo neowa nanun bimildo", color: "#47CFC3" },
+            { time: 233.5, text: "baramgyeore sillyeo dasi doedoragan gibun", color: "#EAA079" },
+            { time: 241.0, text: "", color: "#ffffff" },
+            
+            { time: 241.5, text: "cheoeum seuchin geuttae i hyanggil gieokhae jwo", color: "#B47EE3" },
+            { time: 248.5, text: "daheun geu sungan pyeolchyeojil deja vu", color: "#47CFC3" },
+            { time: 255.5, text: "gateun kkumeul kkudeut nuneul gamabomyeon", color: "#E5C564" },
+            { time: 259.5, text: "iksukhan deja vu Oh oh oh ha", color: "#EAA079" }
         ];
 
         const container = document.getElementById('code-container');
         const terminal = document.getElementById('terminal');
         const music = document.getElementById('bg-music');
+        const timeViewer = document.getElementById('time-viewer');
+        const playPauseBtn = document.getElementById('play-pause-btn');
         let currentLineIndex = -1;
 
-        // วาดโครงสร้างเนื้อเพลงทั้งหมดทิ้งไว้ล่วงหน้าเพื่อเตรียมพิมพ์ตัวอักษร
         function initLyrics() {
             container.innerHTML = '';
             codeLines.forEach((line, index) => {
@@ -176,51 +278,57 @@
             setTimeout(() => { document.getElementById('overlay').style.display = 'none'; }, 500);
             
             initLyrics();
-            music.play().catch(error => console.log("Playback blocked:", error));
+            music.play().catch(error => console.log(error));
         }
 
-        // ตัวจับเวลาจากเสียงเพลงดนตรีจริง (Real-time tracking)
+        function togglePlayPause() {
+            if (music.paused) {
+                music.play();
+                playPauseBtn.textContent = "⏸ Pause";
+            } else {
+                music.pause();
+                playPauseBtn.textContent = "▶ Play";
+            }
+        }
+
         music.addEventListener('timeupdate', () => {
             const currentTime = music.currentTime;
             
-            // วิ่งหาท่อนร้องที่ตรงกับเวลาปัจจุบันของดนตรี
+            const minutes = Math.floor(currentTime / 60);
+            const seconds = Math.floor(currentTime % 60);
+            timeViewer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
             let activeIndex = -1;
             for (let i = 0; i < codeLines.length; i++) {
-                if (codeLines[i].time && currentTime >= codeLines[i].time) {
+                if (currentTime >= codeLines[i].time) {
                     activeIndex = i;
                 } else {
                     break;
                 }
             }
 
-            // ถ้าเพลงเดินหน้าไปถึงท่อนใหม่ ให้สั่งพิมพ์อักษรทันที
             if (activeIndex !== -1 && activeIndex !== currentLineIndex) {
                 currentLineIndex = activeIndex;
                 triggerLineAnimation(currentLineIndex);
             }
         });
 
-        // ฟังก์ชันพิมพ์ตัวอักษรรันทีละตัวอักษรให้เข้ากับจังหวะคำร้อง
         async function triggerLineAnimation(index) {
             const lineData = codeLines[index];
             const lineElement = document.getElementById(`line-${index}`);
             
             if (!lineElement || lineElement.classList.contains('animated')) return;
             
-            // ปรับท่อนก่อนหน้าให้จางลง และไฮไลท์ท่อนปัจจุบัน
             document.querySelectorAll('.line').forEach(el => el.classList.remove('active', 'cursor'));
             lineElement.classList.add('active', 'cursor', 'animated');
             
-            // คำนวณความเร็วสปีดการพิมพ์ให้เฉลี่ยพอดีกับความยาวคำร้อง
             const text = lineData.text;
             let currentText = "";
-            const charSpeed = 45; 
+            const charSpeed = 35; // ความเร็วสปีดการคีย์ตัวอักษรวิ่ง
 
             for (let char of text) {
                 currentText += char;
                 lineElement.textContent = currentText;
-                
-                // สั่งเลื่อนกล่อง Terminal ลงไปล่างสุดโดยอัตโนมัติเมื่อตัวหนังสือยาวขึ้น
                 terminal.scrollTop = terminal.scrollHeight;
                 await new Promise(resolve => setTimeout(resolve, charSpeed));
             }

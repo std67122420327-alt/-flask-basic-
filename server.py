@@ -1,10 +1,3 @@
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-  return """
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -24,7 +17,7 @@ def index():
             position: relative;
         }
 
-        /* ตกแต่งหน้าต่างปุ่มกดเริ่มงาน */
+        /* ตกแต่งปุ่มกดเริ่มงาน */
         .start-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -110,7 +103,7 @@ def index():
     </div>
 
     <audio id="bg-music" loop>
-        <source src="https://pub-2f92d4a3ca0c497cae9e03d3de19d9c2.r2.dev/RESCENE_Deja_Vu.mp3" type="audio/mpeg">
+        <source src="music.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
@@ -120,94 +113,96 @@ def index():
     </div>
 
     <script>
-        // สีแยกคลาสเมมเบอร์: Woni(#E07A9E) | Liv(#B47EE3) | Minami(#47CFC3) | May(#E5C564) | Zena(#EAA079)
+        // โค้ดสีประจำตัวเมมเบอร์: Woni(#E07A9E) | Liv(#B47EE3) | Minami(#47CFC3) | May(#E5C564) | Zena(#EAA079)
         const codeLines = [
-            { text: "햇살 젖은 바람 잠이 든 I", color: "#E07A9E" },
-            { text: "물든 창문 틈새", color: "#B47EE3" },
-            { text: "스며든 light", color: "#47CFC3" },
-            { text: "나의 코끝을 스친 scent", color: "#E5C564" },
-            { text: "(그 향기에)", color: "#EAA079" },
-            { text: "피어난 작은 보조개", color: "#E07A9E" },
-            { text: "(Oh It’s so bright)", color: "#B47EE3" },
+            { text: "햇살 젖은 바람 잠이 든 I", color: "#E07A9E" }, // Woni
+            { text: "물든 창문 틈새", color: "#B47EE3" }, // Liv
+            { text: "스며든 light", color: "#47CFC3" }, // Minami
+            { text: "나의 코끝을 스친 scent", color: "#E5C564" }, // May
+            { text: "(그 향기에)", color: "#EAA079" }, // Zena
+            { text: "피어난 작은 보조개", color: "#E07A9E" }, // Woni
+            { text: "(Oh It’s so bright)", color: "#B47EE3" }, // Liv
             { text: "", color: "#ffffff" },
-            { text: "책상 위에 그린 낙서", color: "#47CFC3" },
-            { text: "너와 나눈 그 비밀도", color: "#E5C564" },
-            { text: "바람결에 실려 다시", color: "#EAA079" },
-            { text: "되돌아간 기분 after all", color: "#E07A9E" },
+            { text: "책상 위에 그린 낙서", color: "#47CFC3" }, 
+            { text: "너와 나눈 그 비밀도", color: "#E5C564" }, 
+            { text: "바람결에 실려 다시", color: "#EAA079" }, 
+            { text: "되돌아간 기분 after all", color: "#E07A9E" }, 
             { text: "", color: "#ffffff" },
-            { text: "처음 스친 그때", color: "#B47EE3" },
-            { text: "이 향길 기억해 줘", color: "#47CFC3" },
-            { text: "닿은 그 순간", color: "#E5C564" },
-            { text: "펼쳐질 deja vu", color: "#EAA079" },
-            { text: "같은 꿈을 꾸듯", color: "#E07A9E" },
-            { text: "눈을 감아보면", color: "#B47EE3" },
-            { text: "익숙한 deja vu", color: "#47CFC3" },
-            { text: "Oh oh oh ha", color: "#E5C564" },
+            { text: "처음 스친 그때", color: "#B47EE3" }, 
+            { text: "이 향길 기억해 줘", color: "#47CFC3" }, 
+            { text: "닿은 그 순간", color: "#E5C564" }, 
+            { text: "펼쳐질 deja vu", color: "#EAA079" }, 
+            { text: "같은 꿈을 꾸듯", color: "#E07A9E" }, 
+            { text: "눈을 감아보면", color: "#B47EE3" }, 
+            { text: "익숙한 deja vu", color: "#47CFC3" }, 
+            { text: "Oh oh oh ha", color: "#E5C564" }, 
             { text: "", color: "#ffffff" },
-            { text: "I I I I I", color: "#EAA079" },
-            { text: "Yeah it’s like a deja vu", color: "#E07A9E" },
-            { text: "You and I", color: "#B47EE3" },
-            { text: "다시 닿을 수 없다 해도", color: "#47CFC3" },
-            { text: "같은 꿈을 꾸듯", color: "#E5C564" },
-            { text: "눈을 감아보면", color: "#EAA079" },
-            { text: "익숙한 deja vu", color: "#E07A9E" },
-            { text: "Oh oh oh ha", color: "#B47EE3" },
+            { text: "I I I I I", color: "#EAA079" }, 
+            { text: "Yeah it’s like a deja vu", color: "#E07A9E" }, 
+            { text: "You and I", color: "#B47EE3" }, 
+            { text: "다시 닿을 수 없다 해도", color: "#47CFC3" }, 
+            { text: "같은 꿈을 꾸듯", color: "#E5C564" }, 
+            { text: "눈을 감아보면", color: "#EAA079" }, 
+            { text: "익숙한 deja vu", color: "#E07A9E" }, 
+            { text: "Oh oh oh ha", color: "#B47EE3" }, 
             { text: "", color: "#ffffff" },
-            { text: "빽빽한 책장 사이", color: "#47CFC3" },
-            { text: "손때 묻은 한 칸", color: "#E5C564" },
-            { text: "바랜 책 모퉁일", color: "#EAA079" },
-            { text: "넘기면 튀어나온", color: "#E07A9E" },
+            { text: "빽빽한 책장 사이", color: "#47CFC3" }, 
+            { text: "손때 묻은 한 칸", color: "#E5C564" }, 
+            { text: "바랜 책 모퉁일", color: "#EAA079" }, 
+            { text: "넘기면 튀어나온", color: "#E07A9E" }, 
             { text: "", color: "#ffffff" },
-            { text: "자그만 이야길 들어", color: "#B47EE3" },
-            { text: "(귀 기울여 봐)", color: "#47CFC3" },
-            { text: "조금은 서툴렀던 날", color: "#E5C564" },
+            { text: "자그만 이야길 들어", color: "#B47EE3" }, 
+            { text: "(귀 기울여 봐)", color: "#47CFC3" }, 
+            { text: "조금은 서툴렀던 날", color: "#E5C564" }, 
             { text: "", color: "#ffffff" },
-            { text: "빛이 바랜 쪽지 속에", color: "#EAA079" },
-            { text: "나를 어루만진 네 voice", color: "#E07A9E" },
-            { text: "바람결에 실려 다시", color: "#B47EE3" },
-            { text: "되돌아간 기분 after all", color: "#47CFC3" },
+            { text: "빛이 바랜 쪽지 속에", color: "#EAA079" }, 
+            { text: "나를 어รู만진 네 voice", color: "#E07A9E" }, 
+            { text: "바람결에 실려 다시", color: "#B47EE3" }, 
+            { text: "되돌아간 기분 after all", color: "#47CFC3" }, 
             { text: "", color: "#ffffff" },
-            { text: "처음 스친 그때", color: "#E5C564" },
-            { text: "이 향길 기억해 줘", color: "#EAA079" },
-            { text: "닿은 그 순간", color: "#E07A9E" },
-            { text: "펼쳐질 deja vu", color: "#B47EE3" },
-            { text: "같은 꿈을 꾸듯", color: "#47CFC3" },
-            { text: "눈을 감아보면", color: "#E5C564" },
-            { text: "익숙한 deja vu", color: "#EAA079" },
-            { text: "Oh oh oh ha", color: "#E07A9E" },
+            { text: "처음 스친 그때", color: "#E5C564" }, 
+            { text: "이 향길 기억해 줘", color: "#EAA079" }, 
+            { text: "닿은 그 순간", color: "#E07A9E" }, 
+            { text: "펼쳐질 deja vu", color: "#B47EE3" }, 
+            { text: "같은 꿈을 꾸듯", color: "#47CFC3" }, 
+            { text: "눈을 감아보면", color: "#E5C564" }, 
+            { text: "익숙한 deja vu", color: "#EAA079" }, 
+            { text: "Oh oh oh ha", color: "#E07A9E" }, 
             { text: "", color: "#ffffff" },
-            { text: "I I I I I", color: "#B47EE3" },
-            { text: "Yeah it’s like a deja vu", color: "#47CFC3" },
-            { text: "You and I", color: "#E5C564" },
-            { text: "다시 닿을 수 없다 해도", color: "#EAA079" },
-            { text: "같은 꿈을 꾸듯", color: "#E07A9E" },
-            { text: "눈을 감아보면", color: "#B47EE3" },
-            { text: "익숙한 deja vu", color: "#47CFC3" },
-            { text: "Oh oh oh ha", color: "#E5C564" },
+            { text: "I I I I I", color: "#B47EE3" }, 
+            { text: "Yeah it’s like a deja vu", color: "#47CFC3" }, 
+            { text: "You and I", color: "#E5C564" }, 
+            { text: "다시 닿을 수 없다 해도", color: "#EAA079" }, 
+            { text: "같은 꿈을 꾸듯", color: "#E07A9E" }, 
+            { text: "눈을 감아보면", color: "#B47EE3" }, 
+            { text: "익숙한 deja vu", color: "#47CFC3" }, 
+            { text: "Oh oh oh ha", color: "#E5C564" }, 
             { text: "", color: "#ffffff" },
-            { text: "(I’ve been thinking about you)", color: "#EAA079" },
-            { text: "그리워질 너와 나", color: "#E07A9E" },
-            { text: "(I’ve been dreaming about you)", color: "#B47EE3" },
-            { text: "이 순간을 잊지 마", color: "#47CFC3" },
+            { text: "(I’ve been thinking about you)", color: "#EAA079" }, 
+            { text: "그리워질 너와 나", color: "#E07A9E" }, 
+            { text: "(I’ve been dreaming about you)", color: "#B47EE3" }, 
+            { text: "이 순간을 잊지 마", color: "#47CFC3" }, 
             { text: "", color: "#ffffff" },
-            { text: "언젠가", color: "#E5C564" },
-            { text: "세상 끝에서", color: "#EAA079" },
-            { text: "마주할 날", color: "#E07A9E" },
-            { text: "오랜 deja vu", color: "#B47EE3" },
-            { text: "같은 꿈을 꾸듯", color: "#47CFC3" },
-            { text: "눈을 감아보면", color: "#E5C564" },
-            { text: "익숙한 deja vu", color: "#EAA079" },
-            { text: "Oh oh oh ha", color: "#E07A9E" },
+            { text: "언젠가", color: "#E5C564" }, 
+            { text: "세상 끝에서", color: "#EAA079" }, 
+            { text: "마주할 날", color: "#E07A9E" }, 
+            { text: "오랜 deja vu", color: "#B47EE3" }, 
+            { text: "같은 꿈을 꾸듯", color: "#47CFC3" }, 
+            { text: "눈을 감아보면", color: "#E5C564" }, 
+            { text: "익숙한 deja vu", color: "#EAA079" }, 
+            { text: "Oh oh oh ha", color: "#E07A9E" }, 
             { text: "", color: "#ffffff" },
-            { text: "I I I I I", color: "#B47EE3" },
-            { text: "Yeah it’s like a deja vu", color: "#47CFC3" },
-            { text: "You and I", color: "#E5C564" },
-            { text: "다시 닿을 수 없다 해도", color: "#EAA079" },
-            { text: "같은 꿈을 꾸듯", color: "#E07A9E" },
-            { text: "눈을 감아보면", color: "#B47EE3" },
-            { text: "익숙한 deja vu", color: "#47CFC3" },
-            { text: "Oh oh oh ha", color: "#E5C564" },
+            { text: "I I I I I", color: "#B47EE3" }, 
+            { text: "Yeah it’s like a deja vu", color: "#47CFC3" }, 
+            { text: "You and I", color: "#E5C564" }, 
+            { text: "다시 닿을 수 없다 해도", color: "#EAA079" }, 
+            { text: "같은 꿈을 꾸듯", color: "#E07A9E" }, 
+            { text: "눈을 감아보면", color: "#B47EE3" }, 
+            { text: "익숙한 deja vu", color: "#47CFC3" }, 
+            { text: "Oh oh oh ha", color: "#E5C564" }, 
             { text: "", color: "#ffffff" },
+            
+            // --- พาร์ท Romanization ---
             { text: "haessal jeojeun baram jami deun I", color: "#E07A9E" },
             { text: "muldeun changmun teumsae", color: "#B47EE3" },
             { text: "seumyeodeun light", color: "#47CFC3" },
@@ -343,45 +338,11 @@ def index():
                     lineElement.classList.remove('cursor');
                     await sleep(lineDelay);
                 }
+                
+                // หยุดรอ 5 วินาทีก่อนวนลูปใหม่หมด
                 await sleep(5000); 
             }
         }
     </script>
 </body>
 </html>
-"""
-
-@app.route('/user/<name>/<int:age>')
-def my_name(name, age):
-  return f'<h1> My name is {name}.I\'m {age+1} years old.</h1>'
-
-@app.route('/calculator/addition/<int:a>/<int:b>')
-def addition(a,b):
-  return f'<h1>{a} + {b} = {a+b}<h1>'
-
-@app.route('/calculator/subtraction/<int:a>/<int:b>')
-def subtraction(a,b):
-  return f'<h1>{a} - {b} = {a-b}<h1>'
-
-@app.route('/calculator/multiplication/<int:a>/<int:b>')
-def multiplication(a,b):
-  return f'<h1>{a} * {b} = {a*b}<h1>'
-
-@app.route('/calculator/division/<int:a>/<int:b>')
-def division(a,b):
-  return f'<h1>{a} / {b} = {a/b}<h1>'
-
-@app.route('/calculator/mod/<int:a>/<int:b>')
-def mod(a,b):
-  return f'<h1>{a} % {b} = {a%b}<h1>'
-
-@app.route('/calculator/power/<float:base>/<float:exponent>')
-def power(base,exponent):
-  return f'<h1>{base} <sup> {exponent} </sup> = {base**exponent}<h1>'
-
-@app.route('/calculator/div/<int:a>/<int:b>')
-def div(a, b):
-  return f'<h1>{a} // {b} = {a//b}</h1>'
-
-if __name__ == '__main__':
-  app.run(debug=True)

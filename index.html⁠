@@ -103,7 +103,7 @@
     </div>
 
     <audio id="bg-music" loop>
-        <source src="music.mp3" type="audio/mpeg">
+        <source src="https://pub-2f92d4a3ca0c497cae9e03d3de19d9c2.r2.dev/RESCENE_Deja_Vu.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
@@ -297,20 +297,20 @@
         const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
         function startEverything() {
-            // ซ่อน Overlay
+            // ซ่อนม่าน Overlay
             document.getElementById('overlay').style.opacity = '0';
             setTimeout(() => {
                 document.getElementById('overlay').style.display = 'none';
             }, 500);
 
-            // สั่งเล่นเพลง
+            // สั่งรันเพลงผ่านลิงก์ออนไลน์
             const music = document.getElementById('bg-music');
             music.play().catch(error => {
                 console.log("Autoplay blocked:", error);
-                alert("เบราว์เซอร์บล็อกการเล่นเสียง กรุณาลองกดปุ่มใหม่อีกครั้ง หรือเช็กการตั้งค่าเสียงในมือถือครับ");
+                alert("เบราว์เซอร์บล็อกกรุณาลองกดปุ่มใหม่อีกครั้ง หรือเช็กสวิตช์เปิดเสียงที่มือถือครับ");
             });
 
-            // รันตัวหนังสือ
+            // รันแอนิเมชันตัวหนังสือวิ่ง
             runCodeAnimation();
         }
 

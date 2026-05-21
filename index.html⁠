@@ -103,7 +103,7 @@
     </div>
 
     <audio id="bg-music" loop>
-        <source src="https://pub-2f92d4a3ca0c497cae9e03d3de19d9c2.r2.dev/RESCENE_Deja_Vu.mp3" type="audio/mpeg">
+        <source src="music.mp3.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
@@ -113,6 +113,7 @@
     </div>
 
     <script>
+        // โค้ดสีประจำตัวเมมเบอร์: Woni(#E07A9E) | Liv(#B47EE3) | Minami(#47CFC3) | May(#E5C564) | Zena(#EAA079)
         const codeLines = [
             { text: "햇살 젖은 바람 잠이 든 I", color: "#E07A9E" }, // Woni
             { text: "물든 창문 틈새", color: "#B47EE3" }, // Liv
@@ -297,20 +298,20 @@
         const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
         function startEverything() {
-            // ซ่อนม่าน Overlay
+            // ซ่อนม่าน Overlay มืดๆ ออกไป
             document.getElementById('overlay').style.opacity = '0';
             setTimeout(() => {
                 document.getElementById('overlay').style.display = 'none';
             }, 500);
 
-            // สั่งรันเพลงผ่านลิงก์ออนไลน์
+            // สั่งเล่นเพลงที่โหลดมาจากชื่อไฟล์ดนตรีตรงตัว
             const music = document.getElementById('bg-music');
             music.play().catch(error => {
                 console.log("Autoplay blocked:", error);
                 alert("เบราว์เซอร์บล็อกกรุณาลองกดปุ่มใหม่อีกครั้ง หรือเช็กสวิตช์เปิดเสียงที่มือถือครับ");
             });
 
-            // รันแอนิเมชันตัวหนังสือวิ่ง
+            // สั่งเริ่มเปิดตัวหนังสือวิ่งไล่สี
             runCodeAnimation();
         }
 
@@ -343,6 +344,7 @@
                     lineElement.classList.remove('cursor');
                     await sleep(lineDelay);
                 }
+                // รอ 5 วินาทีก่อนที่จะวนซ้ำเนื้อเพลงทั้งหมดใหม่
                 await sleep(5000); 
             }
         }

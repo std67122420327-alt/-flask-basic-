@@ -11,7 +11,7 @@ def index():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RESCENE - Deja Vu (Full Sync Lyrics & Controls)</title>
+    <title>RESCENE - Deja Vu (Fine-Tuned Sync)</title>
     <style>
         body {
             background-color: #161616;
@@ -162,160 +162,159 @@ def index():
     </div>
 
     <script>
-        // โค้ดสีประจำตัวเมมเบอร์: Woni(#E07A9E) | Liv(#B47EE3) | Minami(#47CFC3) | May(#E5C564) | Zena(#EAA079)
-        // รวมเนื้อเพลงทั้งหมดครบ 100% ตัวเต็ม
+        // ขยับเวลาถอยหลัง (ขยับให้เร็วขึ้น) เพื่อให้ท่อนร้องแมตช์กับเสียงในไฟล์ดนตรีจริงของคุณ
         const codeLines = [
             // ==========================================
             // KOREAN VERSION
             // ==========================================
-            { time: 9.0, text: "햇살 젖은 바람 잠이 든 I", color: "#E07A9E" },
-            { time: 13.0, text: "물든 창문 틈새 스며든 light", color: "#B47EE3" },
-            { time: 16.0, text: "나의 코끝을 스친 scent", color: "#47CFC3" },
-            { time: 19.5, text: "(그 향기에)", color: "#EAA079" },
-            { time: 22.0, text: "피어난 작은 보조개", color: "#E07A9E" },
-            { time: 25.5, text: "(Oh It’s so bright)", color: "#B47EE3" },
-            { time: 28.0, text: "", color: "#ffffff" },
+            { time: 5.5, text: "햇살 젖은 바람 잠이 든 I", color: "#E07A9E" },
+            { time: 9.5, text: "물든 창문 틈새 스며든 light", color: "#B47EE3" },
+            { time: 12.5, text: "나의 코끝을 스친 scent", color: "#47CFC3" },
+            { time: 16.0, text: "(그 향기에)", color: "#EAA079" },
+            { time: 18.5, text: "피어난 작은 보조개", color: "#E07A9E" },
+            { time: 22.0, text: "(Oh It’s so bright)", color: "#B47EE3" },
+            { time: 24.5, text: "", color: "#ffffff" },
             
-            { time: 28.5, text: "책상 위에 그린 낙서", color: "#47CFC3" },
-            { time: 32.0, text: "너와 나눈 그 비밀도", color: "#E5C564" },
-            { time: 35.5, text: "바람결에 실려 다시", color: "#EAA079" },
-            { time: 39.0, text: "되돌아간 기분 after all", color: "#E07A9E" },
-            { time: 43.0, text: "", color: "#ffffff" },
+            { time: 25.0, text: "책상 위에 그린 낙서", color: "#47CFC3" },
+            { time: 28.5, text: "너와 나눈 그 비밀도", color: "#E5C564" },
+            { time: 32.0, text: "바람결에 실려 다시", color: "#EAA079" },
+            { time: 35.5, text: "되돌아간 기분 after all", color: "#E07A9E" },
+            { time: 39.5, text: "", color: "#ffffff" },
             
-            { time: 43.5, text: "처음 스친 그때 이 향길 기억해 줘", color: "#B47EE3" },
-            { time: 50.5, text: "닿은 그 순간 펼쳐질 deja vu", color: "#47CFC3" },
-            { time: 57.5, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E5C564" },
-            { time: 61.5, text: "익숙한 deja vu Oh oh oh ha", color: "#EAA079" },
-            { time: 65.0, text: "", color: "#ffffff" },
+            { time: 40.0, text: "처음 스친 그때 이 향길 기억해 줘", color: "#B47EE3" },
+            { time: 47.0, text: "닿은 그 순간 펼쳐질 deja vu", color: "#47CFC3" },
+            { time: 54.0, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E5C564" },
+            { time: 58.0, text: "익숙한 deja vu Oh oh oh ha", color: "#EAA079" },
+            { time: 61.5, text: "", color: "#ffffff" },
             
-            { time: 65.5, text: "I I I I I", color: "#EAA079" },
-            { time: 68.0, text: "Yeah it’s like a deja vu", color: "#E07A9E" },
-            { time: 72.0, text: "You and I", color: "#B47EE3" },
-            { time: 74.0, text: "다시 닿을 수 없다 해도", color: "#47CFC3" },
-            { time: 79.0, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E5C564" },
-            { time: 83.0, text: "익숙한 deja vu Oh oh oh ha", color: "#E07A9E" },
-            { time: 86.5, text: "", color: "#ffffff" },
+            { time: 62.0, text: "I I I I I", color: "#EAA079" },
+            { time: 64.5, text: "Yeah it’s like a deja vu", color: "#E07A9E" },
+            { time: 68.5, text: "You and I", color: "#B47EE3" },
+            { time: 70.5, text: "다시 닿을 수 없다 해도", color: "#47CFC3" },
+            { time: 75.5, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E5C564" },
+            { time: 79.5, text: "익숙한 deja vu Oh oh oh ha", color: "#E07A9E" },
+            { time: 83.0, text: "", color: "#ffffff" },
             
-            { time: 87.0, text: "빽빽한 책장 사이 손때 묻은 한 칸", color: "#47CFC3" },
-            { time: 90.5, text: "바랜 책 모퉁일 넘기면 튀어나온", color: "#E5C564" },
-            { time: 94.0, text: "자그만 이야길 들어 (귀 기울여 봐)", color: "#B47EE3" },
-            { time: 98.0, text: "조금은 서툴렀던 날", color: "#E07A9E" },
-            { time: 101.0, text: "", color: "#ffffff" },
+            { time: 83.5, text: "빽빽한 책장 사이 손때 묻은 한 칸", color: "#47CFC3" },
+            { time: 87.0, text: "바랜 책 모퉁일 넘기면 튀어나온", color: "#E5C564" },
+            { time: 90.5, text: "자그만 이야길 들어 (귀 기울여 봐)", color: "#B47EE3" },
+            { time: 94.5, text: "조금은 서툴렀던 날", color: "#E07A9E" },
+            { time: 97.5, text: "", color: "#ffffff" },
             
-            { time: 101.5, text: "빛이 바랜 쪽지 속에 나를 어루만진 네 voice", color: "#EAA079" },
-            { time: 105.0, text: "바람결에 실려 다시 되돌아간 기분 after all", color: "#E07A9E" },
-            { time: 109.0, text: "", color: "#ffffff" },
+            { time: 98.0, text: "빛이 바랜 쪽지 속에 나를 어루만진 네 voice", color: "#EAA079" },
+            { time: 101.5, text: "바람결에 실려 다시 되돌아간 기분 after all", color: "#E07A9E" },
+            { time: 105.5, text: "", color: "#ffffff" },
             
-            { time: 109.5, text: "처음 스친 그때 이 향길 기억해 줘", color: "#E5C564" },
-            { time: 116.5, text: "닿은 그 순간 펼쳐질 deja vu", color: "#EAA079" },
-            { time: 123.5, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E07A9E" },
-            { time: 127.5, text: "익숙한 deja vu Oh oh oh ha", color: "#B47EE3" },
-            { time: 131.0, text: "", color: "#ffffff" },
+            { time: 106.0, text: "처음 스친 그때 이 향길 기억해 줘", color: "#E5C564" },
+            { time: 113.0, text: "닿은 그 순간 펼쳐질 deja vu", color: "#EAA079" },
+            { time: 120.0, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E07A9E" },
+            { time: 124.0, text: "익숙한 deja vu Oh oh oh ha", color: "#B47EE3" },
+            { time: 127.5, text: "", color: "#ffffff" },
             
-            { time: 131.5, text: "I I I I I", color: "#B47EE3" },
-            { time: 134.0, text: "Yeah it’s like a deja vu", color: "#47CFC3" },
-            { time: 138.0, text: "You and I", color: "#E5C564" },
-            { time: 140.0, text: "다시 닿을 수 없다 해도", color: "#EAA079" },
-            { time: 145.0, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E07A9E" },
-            { time: 149.0, text: "익숙한 deja vu Oh oh oh ha", color: "#B47EE3" },
-            { time: 152.5, text: "", color: "#ffffff" },
+            { time: 128.0, text: "I I I I I", color: "#B47EE3" },
+            { time: 130.5, text: "Yeah it’s like a deja vu", color: "#47CFC3" },
+            { time: 134.5, text: "You and I", color: "#E5C564" },
+            { time: 136.5, text: "다시 닿을 수 없다 해도", color: "#EAA079" },
+            { time: 141.5, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E07A9E" },
+            { time: 145.5, text: "익숙한 deja vu Oh oh oh ha", color: "#B47EE3" },
+            { time: 149.0, text: "", color: "#ffffff" },
             
-            { time: 153.0, text: "(I’ve been thinking about you)", color: "#EAA079" },
-            { time: 156.0, text: "그리워질 너와 나", color: "#E07A9E" },
-            { time: 160.0, text: "(I’ve been dreaming about you)", color: "#B47EE3" },
-            { time: 163.0, text: "이 순간을 잊지 마", color: "#47CFC3" },
-            { time: 166.5, text: "", color: "#ffffff" },
+            { time: 149.5, text: "(I’ve been thinking about you)", color: "#EAA079" },
+            { time: 152.5, text: "그리워질 너와 나", color: "#E07A9E" },
+            { time: 156.5, text: "(I’ve been dreaming about you)", color: "#B47EE3" },
+            { time: 159.5, text: "이 순간을 잊지 마", color: "#47CFC3" },
+            { time: 163.0, text: "", color: "#ffffff" },
             
-            { time: 167.0, text: "언젠가 세상 끝에서 마주할 날 오랜 deja vu", color: "#E5C564" },
-            { time: 174.0, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#EAA079" },
-            { time: 178.0, text: "익숙한 deja vu Oh oh oh ha", color: "#E07A9E" },
-            { time: 181.5, text: "", color: "#ffffff" },
+            { time: 163.5, text: "언젠가 세상 끝에서 마주할 날 오랜 deja vu", color: "#E5C564" },
+            { time: 170.5, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#EAA079" },
+            { time: 174.5, text: "익숙한 deja vu Oh oh oh ha", color: "#E07A9E" },
+            { time: 178.0, text: "", color: "#ffffff" },
             
-            { time: 182.0, text: "I I I I I", color: "#B47EE3" },
-            { time: 184.5, text: "Yeah it’s like a deja vu", color: "#47CFC3" },
-            { time: 188.5, text: "You and I", color: "#E5C564" },
-            { time: 190.5, text: "다시 닿을 수 없다 해도", color: "#EAA079" },
-            { time: 195.5, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E07A9E" },
-            { time: 199.5, text: "익숙한 deja vu Oh oh oh ha", color: "#B47EE3" },
-            { time: 204.0, text: "", color: "#ffffff" },
+            { time: 178.5, text: "I I I I I", color: "#B47EE3" },
+            { time: 181.0, text: "Yeah it’s like a deja vu", color: "#47CFC3" },
+            { time: 185.0, text: "You and I", color: "#E5C564" },
+            { time: 187.0, text: "다시 닿을 수 없다 해도", color: "#EAA079" },
+            { time: 192.0, text: "같은 꿈을 꾸듯 눈을 감아보면", color: "#E07A9E" },
+            { time: 196.0, text: "익숙한 deja vu Oh oh oh ha", color: "#B47EE3" },
+            { time: 200.5, text: "", color: "#ffffff" },
 
             // ==========================================
             // ROMANIZATION VERSION
             // ==========================================
-            { time: 205.0, text: "----------------------------------------", color: "#555555" },
-            { time: 205.5, text: "          ROMANIZATION VERSION          ", color: "#ffffff" },
-            { time: 206.0, text: "----------------------------------------", color: "#555555" },
-            { time: 206.5, text: "", color: "#ffffff" },
+            { time: 201.0, text: "----------------------------------------", color: "#555555" },
+            { time: 201.5, text: "          ROMANIZATION VERSION          ", color: "#ffffff" },
+            { time: 202.0, text: "----------------------------------------", color: "#555555" },
+            { time: 202.5, text: "", color: "#ffffff" },
             
-            { time: 207.0, text: "haessal jeojeun baram jami deun I", color: "#E07A9E" },
-            { time: 211.0, text: "muldeun changmun teumsae seumyeodeun light", color: "#B47EE3" },
-            { time: 214.0, text: "naui kokkeuteul seuchin scent", color: "#47CFC3" },
-            { time: 217.5, text: "(geu hyanggie)", color: "#EAA079" },
-            { time: 219.0, text: "pieonan jageun bojogae", color: "#E07A9E" },
-            { time: 222.0, text: "(Oh It’s so bright)", color: "#B47EE3" },
-            { time: 225.0, text: "", color: "#ffffff" },
+            { time: 203.0, text: "haessal jeojeun baram jami deun I", color: "#E07A9E" },
+            { time: 207.0, text: "muldeun changmun teumsae seumyeodeun light", color: "#B47EE3" },
+            { time: 210.0, text: "naui kokkeuteul seuchin scent", color: "#47CFC3" },
+            { time: 213.5, text: "(geu hyanggie)", color: "#EAA079" },
+            { time: 215.0, text: "pieonan jageun bojogae", color: "#E07A9E" },
+            { time: 218.0, text: "(Oh It’s so bright)", color: "#B47EE3" },
+            { time: 221.0, text: "", color: "#ffffff" },
             
-            { time: 225.5, text: "chaeksang wie geurin nakseo", color: "#47CFC3" },
-            { time: 228.0, text: "neowa nanun geu bimildo", color: "#E5C564" },
-            { time: 231.0, text: "baramgyeore sillyeo dasi", color: "#EAA079" },
-            { time: 234.0, text: "doedoragan gibun after all", color: "#E07A9E" },
-            { time: 237.5, text: "", color: "#ffffff" },
+            { time: 221.5, text: "chaeksang wie geurin nakseo", color: "#47CFC3" },
+            { time: 224.0, text: "neowa nanun geu bimildo", color: "#E5C564" },
+            { time: 227.0, text: "baramgyeore sillyeo dasi", color: "#EAA079" },
+            { time: 230.0, text: "doedoragan gibun after all", color: "#E07A9E" },
+            { time: 233.5, text: "", color: "#ffffff" },
             
-            { time: 238.0, text: "cheoeum seuchin geuttae i hyanggil gieokhae jwo", color: "#B47EE3" },
-            { time: 243.5, text: "daheun geu sungan pyeolchyeojil deja vu", color: "#47CFC3" },
-            { time: 249.5, text: "gateun kkumeul kkudeut nuneul gamabomyeon", color: "#E5C564" },
-            { time: 254.0, text: "iksukhan deja vu Oh oh oh ha", color: "#EAA079" },
-            { time: 258.0, text: "", color: "#ffffff" },
+            { time: 234.0, text: "cheoeum seuchin geuttae i hyanggil gieokhae jwo", color: "#B47EE3" },
+            { time: 239.5, text: "daheun geu sungan pyeolchyeojil deja vu", color: "#47CFC3" },
+            { time: 245.5, text: "gateun kkumeul kkudeut nuneul gamabomyeon", color: "#E5C564" },
+            { time: 250.0, text: "iksukhan deja vu Oh oh oh ha", color: "#EAA079" },
+            { time: 254.0, text: "", color: "#ffffff" },
             
-            { time: 258.5, text: "I I I I I", color: "#EAA079" },
-            { time: 261.0, text: "Yeah it’s like a deja vu", color: "#E07A9E" },
-            { time: 264.0, text: "You and I", color: "#B47EE3" },
-            { time: 266.0, text: "dasi daheul su eopsda haedo", color: "#47CFC3" },
-            { time: 271.0, text: "gateun kkumeul kkudeut nuneul gamabomyeon", color: "#E5C564" },
-            { time: 275.0, text: "iksukhan deja vu Oh oh oh ha", color: "#E07A9E" },
-            { time: 279.0, text: "", color: "#ffffff" },
+            { time: 254.5, text: "I I I I I", color: "#EAA079" },
+            { time: 257.0, text: "Yeah it’s like a deja vu", color: "#E07A9E" },
+            { time: 260.0, text: "You and I", color: "#B47EE3" },
+            { time: 262.0, text: "dasi daheul su eopsda haedo", color: "#47CFC3" },
+            { time: 267.0, text: "gateun kkumeul kkudeut nuneul gamabomyeon", color: "#E5C564" },
+            { time: 271.0, text: "iksukhan deja vu Oh oh oh ha", color: "#E07A9E" },
+            { time: 275.0, text: "", color: "#ffffff" },
             
-            { time: 279.5, text: "ppaekppaekhan chaekjang sai sonttae mudeun han kan", color: "#47CFC3" },
-            { time: 283.0, text: "baraen chaek motungil neomgimyeon twieonaon", color: "#E5C564" },
-            { time: 286.5, text: "jageuman iyagil deureo (gwi giuryeo bwa)", color: "#B47EE3" },
-            { time: 290.0, text: "jogeumeun seotulleossdeon nal", color: "#E07A9E" },
-            { time: 293.0, text: "", color: "#ffffff" },
+            { time: 275.5, text: "ppaekppaekhan chaekjang sai sonttae mudeun han kan", color: "#47CFC3" },
+            { time: 279.0, text: "baraen chaek motungil neomgimyeon twieonaon", color: "#E5C564" },
+            { time: 282.5, text: "jageuman iyagil deureo (gwi giuryeo bwa)", color: "#B47EE3" },
+            { time: 286.0, text: "jogeumeun seotulleossdeon nal", color: "#E07A9E" },
+            { time: 289.0, text: "", color: "#ffffff" },
             
-            { time: 293.5, text: "bicci baraen jjokji soge nareul eorumanjin ne voice", color: "#EAA079" },
-            { time: 297.0, text: "baramgyeore sillyeo dasi doedoragan gibun after all", color: "#47CFC3" },
-            { time: 301.5, text: "", color: "#ffffff" },
+            { time: 289.5, text: "bicci baraen jjokji soge nareul eorumanjin ne voice", color: "#EAA079" },
+            { time: 293.0, text: "baramgyeore sillyeo dasi doedoragan gibun after all", color: "#47CFC3" },
+            { time: 297.5, text: "", color: "#ffffff" },
             
-            { time: 302.0, text: "cheoeum seuchin geuttae i hyanggil gieokhae jwo", color: "#E5C564" },
-            { time: 307.0, text: "daheun geu sungan pyeolchyeojil deja vu", color: "#EAA079" },
-            { time: 313.0, text: "gateun kkumeul kkudeut nuneul gamabomyeon", color: "#E07A9E" },
-            { time: 317.0, text: "iksukhan deja vu Oh oh oh ha", color: "#B47EE3" },
-            { time: 321.0, text: "", color: "#ffffff" },
+            { time: 298.0, text: "cheoeum seuchin geuttae i hyanggil gieokhae jwo", color: "#E5C564" },
+            { time: 303.0, text: "daheun geu sungan pyeolchyeojil deja vu", color: "#EAA079" },
+            { time: 309.0, text: "gateun kkumeul kkudeut nuneul gamabomyeon", color: "#E07A9E" },
+            { time: 313.0, text: "iksukhan deja vu Oh oh oh ha", color: "#B47EE3" },
+            { time: 317.0, text: "", color: "#ffffff" },
             
-            { time: 321.5, text: "I I I I I", color: "#B47EE3" },
-            { time: 324.0, text: "Yeah it’s like a deja vu", color: "#47CFC3" },
-            { time: 327.5, text: "You and I", color: "#E5C564" },
-            { time: 329.5, text: "dasi daheul su eopsda haedo", color: "#EAA079" },
-            { time: 334.5, text: "gateun kkumeul kkudeut nuneul gamabomyeon", color: "#E07A9E" },
-            { time: 338.5, text: "iksukhan deja vu Oh oh oh ha", color: "#B47EE3" },
-            { time: 342.5, text: "", color: "#ffffff" },
+            { time: 317.5, text: "I I I I I", color: "#B47EE3" },
+            { time: 320.0, text: "Yeah it’s like a deja vu", color: "#47CFC3" },
+            { time: 323.5, text: "You and I", color: "#E5C564" },
+            { time: 325.5, text: "dasi daheul su eopsda haedo", color: "#EAA079" },
+            { time: 330.5, text: "gateun kkumeul kkudeut nuneul gamabomyeon", color: "#E07A9E" },
+            { time: 334.5, text: "iksukhan deja vu Oh oh oh ha", color: "#B47EE3" },
+            { time: 338.5, text: "", color: "#ffffff" },
             
-            { time: 343.0, text: "(I’ve been thinking about you)", color: "#EAA079" },
-            { time: 346.5, text: "geuriwojil neowa na", color: "#E07A9E" },
-            { time: 350.0, text: "(I’ve been dreaming about you)", color: "#B47EE3" },
-            { time: 353.5, text: "i sunganeul ijji ma", color: "#47CFC3" },
-            { time: 357.0, text: "", color: "#ffffff" },
+            { time: 339.0, text: "(I’ve been thinking about you)", color: "#EAA079" },
+            { time: 342.5, text: "geuriwojil neowa na", color: "#E07A9E" },
+            { time: 346.0, text: "(I’ve been dreaming about you)", color: "#B47EE3" },
+            { time: 349.5, text: "i sunganeul ijji ma", color: "#47CFC3" },
+            { time: 353.0, text: "", color: "#ffffff" },
             
-            { time: 357.5, text: "eonjenga sesang kkeuteseo majuhal nal oraen deja vu", color: "#E5C564" },
-            { time: 364.5, text: "gateun kkumeul kkudeut nuneul gamabomyeon", color: "#EAA079" },
-            { time: 368.5, text: "iksukhan deja vu Oh oh oh ha", color: "#E07A9E" },
-            { time: 372.5, text: "", color: "#ffffff" },
+            { time: 353.5, text: "eonjenga sesang kkeuteseo majuhal nal oraen deja vu", color: "#E5C564" },
+            { time: 360.5, text: "gateun kkumeul kkudeut nuneul gamabomyeon", color: "#EAA079" },
+            { time: 364.5, text: "iksukhan deja vu Oh oh oh ha", color: "#E07A9E" },
+            { time: 368.5, text: "", color: "#ffffff" },
             
-            { time: 373.0, text: "I I I I I", color: "#B47EE3" },
-            { time: 375.5, text: "Yeah it’s like a deja vu", color: "#47CFC3" },
-            { time: 379.5, text: "You and I", color: "#E5C564" },
-            { time: 381.5, text: "dasi daheul su eopsda haedo", color: "#EAA079" },
-            { time: 386.5, text: "gateun kkumeul kkudeut nuneul gamabomyeon", color: "#E07A9E" },
-            { time: 390.5, text: "iksukhan deja vu Oh oh oh ha", color: "#E5C564" }
+            { time: 369.0, text: "I I I I I", color: "#B47EE3" },
+            { time: 371.5, text: "Yeah it’s like a deja vu", color: "#47CFC3" },
+            { time: 375.5, text: "You and I", color: "#E5C564" },
+            { time: 377.5, text: "dasi daheul su eopsda haedo", color: "#EAA079" },
+            { time: 382.5, text: "gateun kkumeul kkudeut nuneul gamabomyeon", color: "#E07A9E" },
+            { time: 386.5, text: "iksukhan deja vu Oh oh oh ha", color: "#E5C564" }
         ];
 
         const container = document.getElementById('code-container');
@@ -325,6 +324,7 @@ def index():
         const playPauseBtn = document.getElementById('play-pause-btn');
         let currentLineIndex = -1;
 
+        // วาดบรรทัดเนื้อเพลงเตรียมไว้
         function initLyrics() {
             container.innerHTML = '';
             codeLines.forEach((line, index) => {
@@ -355,6 +355,7 @@ def index():
             }
         }
 
+        // ฟังชันก์ตรวจสอบเวลาระหว่างเล่นดนตรี
         music.addEventListener('timeupdate', () => {
             const currentTime = music.currentTime;
             
@@ -388,7 +389,7 @@ def index():
             
             const text = lineData.text;
             let currentText = "";
-            const charSpeed = 35; 
+            const charSpeed = 25; // เร่งความเร็วการพิมพ์ตัวอักษรให้ไวขึ้นเพื่อให้กระชับตามเพลง
 
             for (let char of text) {
                 currentText += char;
@@ -402,12 +403,3 @@ def index():
     </script>
 </body>
 </html>
-"""
-
-@app.route('/get_music')
-def get_music():
-    return send_from_directory(os.getcwd(), 'music.mp3')
-
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host='0.0.0.0', port=port, debug=True)
